@@ -1,4 +1,4 @@
-package com.cirruslabs.anthm.project.demo.employee;
+package com.cirruslabs.anthm.project.demo.employee.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +17,9 @@ public class Employee {
     @NotEmpty(message = "Name cannot be empty")
     private String name;
 
+    @NotEmpty(message = "Designation cannot be empty")
+    private String designation;
+
     @Email(message = "Email is not valid", regexp = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
     @NotEmpty(message = "Email cannot be empty")
     private String email;
@@ -30,9 +33,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String name, String email, String address, String phone) {
+    public Employee(Integer id, String name, String designation, String email, String address, String phone) {
         this.id = id;
         this.name = name;
+        this.designation = designation;
         this.email = email;
         this.address = address;
         this.phone = phone;
@@ -52,6 +56,14 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     public String getEmail() {
