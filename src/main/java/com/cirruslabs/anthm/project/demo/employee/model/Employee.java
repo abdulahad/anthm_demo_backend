@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 @Entity
 public class Employee {
@@ -14,8 +16,14 @@ public class Employee {
     @GeneratedValue
     private Integer id;
 
-    @NotEmpty(message = "Name cannot be empty")
-    private String name;
+    @NotEmpty(message = "First name cannot be empty")
+    private String firstName;
+
+    @NotEmpty(message = "Last name cannot be empty")
+    private String lastName;
+
+    @Past
+    private Date dateOfBirth;
 
     @NotEmpty(message = "Designation cannot be empty")
     private String designation;
@@ -23,8 +31,7 @@ public class Employee {
     @Email(message = "Email is not valid", regexp = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
     @NotEmpty(message = "Email cannot be empty")
     private String email;
-
-    @NotEmpty(message = "Name cannot be empty")
+    
     private String address;
 
     @Pattern(regexp = "(^$|[0-9]{10})")
@@ -33,9 +40,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String name, String designation, String email, String address, String phone) {
+    public Employee(Integer id, String firstName, String lastName, Date dateOfBirth, String designation, String email, String address, String phone) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.designation = designation;
         this.email = email;
         this.address = address;
@@ -50,12 +59,28 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getDesignation() {

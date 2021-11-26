@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
@@ -43,7 +44,8 @@ public class EmployeeResource {
 
     //Create Employee
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody Employee employee) {
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Object> create(@Valid @RequestBody Employee employee) {
         Employee savedEmployee = employeeRepository.save(employee);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().
@@ -52,6 +54,7 @@ public class EmployeeResource {
     }
 
     //Search Employee
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<Page<Employee>> search(EmployeePage employeePage, EmployeeSearchCriteria employeeSearchCriteria) {
 

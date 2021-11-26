@@ -55,12 +55,49 @@ public class EmployeeCriteriaRepository {
 
     private Predicate getPridicate(EmployeeSearchCriteria employeeSearchCriteria, Root<Employee> employeeRoot) {
         List<Predicate> predicates = new LinkedList<>();
-        if (Objects.nonNull(employeeSearchCriteria.getName())) {
+        if (Objects.nonNull(employeeSearchCriteria.getKeywords())) {
             predicates.add(
                     criteriaBuilder.like(
-                            employeeRoot.get("name"),
-                            "%" + employeeSearchCriteria.getName() + "%"
+                            employeeRoot.get("firstName"),
+                            "%" + employeeSearchCriteria.getKeywords() + "%"
                     )
+            );
+            predicates.add(
+                    criteriaBuilder.like(
+                            employeeRoot.get("lastName"),
+                            "%" + employeeSearchCriteria.getKeywords() + "%"
+                    )
+            );
+            predicates.add(
+                    criteriaBuilder.like(
+                            employeeRoot.get("designation"),
+                            "%" + employeeSearchCriteria.getKeywords() + "%"
+                    )
+            );
+            predicates.add(
+                    criteriaBuilder.like(
+                            employeeRoot.get("email"),
+                            "%" + employeeSearchCriteria.getKeywords() + "%"
+                    )
+            );
+            predicates.add(
+                    criteriaBuilder.like(
+                            employeeRoot.get("phone"),
+                            "%" + employeeSearchCriteria.getKeywords() + "%"
+                    )
+            );
+            return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
+        }
+        if (Objects.nonNull(employeeSearchCriteria.getFirstName())) {
+            predicates.add(
+                    criteriaBuilder.like(employeeRoot.get("firstName"),
+                            "%" + employeeSearchCriteria.getFirstName() + "%")
+            );
+        }
+        if (Objects.nonNull(employeeSearchCriteria.getLastName())) {
+            predicates.add(
+                    criteriaBuilder.like(employeeRoot.get("lastName"),
+                            "%" + employeeSearchCriteria.getLastName() + "%")
             );
         }
         if (Objects.nonNull(employeeSearchCriteria.getDesignation())) {
