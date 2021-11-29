@@ -4,9 +4,9 @@ import org.springframework.data.domain.Sort;
 
 public class EmployeePage {
     private int pageNumber = 0;
-    private int pageSize = 10;
+    private int pageSize = 8;
     private Sort.Direction sortDirection = Sort.Direction.DESC;
-    private String sortBy = "lastName";
+    private String sortBy = "id";
 
     public int getPageNumber() {
         return pageNumber;

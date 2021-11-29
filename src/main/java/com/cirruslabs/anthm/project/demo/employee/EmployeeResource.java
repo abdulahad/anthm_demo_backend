@@ -26,11 +26,6 @@ public class EmployeeResource {
     @Autowired
     private EmployeeService employeeService;
 
-//    //Get All Employee
-//    @GetMapping
-//    public List<Employee> getAll() {
-//        return employeeRepository.findAll();
-//    }
 
     //Get Employee By ID
     @GetMapping("/{id}")
